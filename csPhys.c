@@ -85,14 +85,9 @@ void InitCarWheels()
  	uCar.wheels[RFRONT].isSteering = true;
 }
 
-void InitMainBody()
-{
-}
-
 void InitCar()
 {
 	InitCarWheels();
-	InitMainBody();
 
 	// speed
 	uCar.linV = 0.003;

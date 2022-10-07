@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
 void Keyboard(unsigned char Key, int MouseX, int MouseY)
 {
-	if (Key == 27)
+	if (Key == 27) // esc
 		exit(0);
 
 	ControlCar(Key);

@@ -131,23 +131,23 @@ void DrawTank(S_Car * car)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, material_diffuse);
 
 	glPushMatrix();
-
-	glTranslated( -0.21 + 0.335, 0.15, 0);
-	glRotated(90, 0, 1, 0);
-
-	int i;
-	int slices = 10;
-	double R = 0.09, H = 0.28;
-	glBegin(GL_QUAD_STRIP);
-	for (i = 0; i <= slices; i++)
 	{
-		double a = i * 2 * M_PI / slices;
-		double x = R * cos(a), y = R * sin(a);
-		glNormal3d(x, y, 0);
-		glVertex3d(x, y, H);
-		glVertex3d(x, y, -H);
+		glTranslated(-0.21 + 0.335, 0.15, 0);
+		glRotated(90, 0, 1, 0);
+
+		int i;
+		int slices = 10;
+		double R = 0.09, H = 0.28;
+		glBegin(GL_QUAD_STRIP);
+		for (i = 0; i <= slices; i++) {
+			double a = i * 2 * M_PI / slices;
+			double x = R * cos(a), y = R * sin(a);
+			glNormal3d(x, y, 0);
+			glVertex3d(x, y, H);
+			glVertex3d(x, y, -H);
+		}
+		glEnd();
 	}
-	glEnd();
 	glPopMatrix();
 }
 
@@ -196,11 +196,13 @@ void DrawCabin(S_Car * car)
 	glPushMatrix();
 		glTranslated(0.16 + 0.335, 0.17, 0);
 		glScaled(0.76, 0.9, 0.8);
+
 		glutSolidCube(R);
 	glPopMatrix();
 	glPushMatrix();
 		glTranslated(0.25 + 0.335, 0.13, 0);
 		glScaled    (0.5,  0.45, 0.8);
+
 		glutSolidCube(R);
 	glPopMatrix();
 
@@ -208,13 +210,14 @@ void DrawCabin(S_Car * car)
 	glPushMatrix();
 		glTranslated(0.29 + 0.335, 0.1, 0);
 		glScaled(0.2, 0.2, 1);
+
 		glutSolidCube(H);
 	glPopMatrix();
 }
 
 void DrawMainBody(S_Car * car)
 {
-	DrawTank (car);
+	DrawTank(car);
 
 	DrawCabin(car);
 }
@@ -236,8 +239,6 @@ void DrawCar(S_Car *car)
 	glPopMatrix();
 }
 
-
-
 void Display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -257,7 +258,6 @@ void Display(void)
 	
 	glutSwapBuffers();
 }
-
 
 void GraphicsInit()
 {
