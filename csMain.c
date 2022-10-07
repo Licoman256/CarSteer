@@ -2,8 +2,6 @@
 #include <math.h>
 #include "../ext/include/GL/glut.h"
 #include "carsim.h" 
-S_GeoWheel fAxe;
-S_GeoWheel bAxe;
 
 S_Car uCar;
 

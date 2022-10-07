@@ -221,8 +221,6 @@ void CalcSpin(S_Wheel *whl, S_Spatial* deltaHub)
 
 void AnimateSystem(S_Car *car)
 {
-	double dt = 0.01; // [s] 60 FPS
-
 	// update steer in steering wheels
 	// calc hubs movement
 	// balance positions of steering axis
@@ -242,4 +240,3 @@ void AnimateSystem(S_Car *car)
 	//DebugSteer(car);
 	//DebugSpinWheels(car);
 }
-
