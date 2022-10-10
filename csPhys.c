@@ -30,6 +30,7 @@ void ControlCar(unsigned char Key)
 	}
 }
 
+// out: uCar.wheels array 
 void PositionWheels()
 {
 	S_Wheel right;
@@ -113,7 +114,7 @@ void DebugSteer(S_Car * car)
 
 void RestrictFallingOut(S_Car * car)
 {
-	static double limJump = 3.5;
+	const double limJump = 3.5;
 
 	while (car->sp.transX > limJump) {
 		car->sp.transX -= 2 * limJump;
@@ -155,7 +156,7 @@ void CalcDeltaSpatial(S_Car * car)
 	car->deltaSp.angleY = radDelta / M_PI * 180;
 
 	// move to uCar.sp.angleY direction
-	double radSteer = uCar.sp.angleY * M_PI / 180;
+	double radSteer = car->sp.angleY * M_PI / 180;
 	car->deltaSp.transX = cos(radSteer) * moveAlong;
 	car->deltaSp.transY = 0.0;
 	car->deltaSp.transZ = -sin(radSteer) * moveAlong;

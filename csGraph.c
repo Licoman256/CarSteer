@@ -125,8 +125,41 @@ void SetupLight()
 	glPopMatrix();
 }
 
-void DrawTank(S_Car * car)
+void PushTankProceduralBody() 
 {
+	#define slices  16
+	double arrX[slices+1], arrY[slices+1];
+	double R = 0.09, H = 0.28;
+
+	// prepare vertices
+	int i;
+	for (i = 0; i <= slices; i++) {
+		double a = i * 2 * M_PI / slices;
+		arrX[i] = R * cos(a);
+		arrY[i] = R * sin(a);
+	}
+
+	// side surface
+	glBegin(GL_QUAD_STRIP);
+	for (i = 0; i <= slices; i++) {
+		glNormal3d(arrX[i], arrY[i], 0);
+		glVertex3d(arrX[i], arrY[i], H);
+		glVertex3d(arrX[i], arrY[i], -H);
+	}
+	glEnd();
+
+	// back surface
+	glBegin(GL_TRIANGLE_FAN);
+	glNormal3d(0, 0, H);
+	glVertex3d(arrX[0], arrY[0], -H);
+	for (i = 1; i <= slices; i++) {
+		glNormal3d(0, 0, H);
+		glVertex3d(arrX[i], arrY[i], -H);
+	}
+	glEnd();
+}
+
+void DrawTank(S_Car* car) {
 	GLfloat material_diffuse[] = { 1.0f, 0.1f, 0.1f, 1.f };
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, material_diffuse);
 
@@ -134,19 +167,7 @@ void DrawTank(S_Car * car)
 	{
 		glTranslated(-0.21 + 0.335, 0.15, 0);
 		glRotated(90, 0, 1, 0);
-
-		int i;
-		int slices = 10;
-		double R = 0.09, H = 0.28;
-		glBegin(GL_QUAD_STRIP);
-		for (i = 0; i <= slices; i++) {
-			double a = i * 2 * M_PI / slices;
-			double x = R * cos(a), y = R * sin(a);
-			glNormal3d(x, y, 0);
-			glVertex3d(x, y, H);
-			glVertex3d(x, y, -H);
-		}
-		glEnd();
+		PushTankProceduralBody();
 	}
 	glPopMatrix();
 }
